@@ -1,0 +1,23 @@
+{% load static %}
+<header class="cabecalho">
+  <a href="{% url 'home' %}"
+    ><img
+      class="cabecalho_logo"
+      src="{% static '/Good Kitchen.gif' %}"
+      alt="Logo da Alura Space"
+  /></a>
+  <div class="cabecalho__busca">
+    <div class="busca__fundo">
+      <input
+        class="busca__input"
+        type="text"
+        placeholder="O que você procura?"
+      />
+      <img
+        class="busca__icone"
+        src="{% static '/search.png' %}"
+        alt="ícone de search"
+      />
+    </div>
+  </div>
+</header>
