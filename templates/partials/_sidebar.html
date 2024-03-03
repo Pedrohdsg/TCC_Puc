@@ -1,0 +1,41 @@
+{% load static %}
+<section class="menu-lateral">
+    <nav class="menu-lateral__navegacao">
+      <a href="{% url 'home' %}"
+        ><img
+          src="{% static '/food_bank.png' %}"
+        />
+        Home</a
+      >
+      <a href="{% url 'login' %}"
+        ><img
+          src="{% static '/dinner_dining.png' %}"
+        />
+        Login</a
+      >
+      <a href="{% url 'cadastro' %}"
+        ><img
+          src="{% static '/lunch_dining.png' %}"
+        />
+        Cadastro</a
+      >
+      <a href="{% url 'logout' %}"
+        ><img
+          src="{% static '/admin.png' %}"
+        />
+        Logout</a
+      >
+      <a href="{% url 'nova_receita' %}"
+        ><img
+          src="{% static '/dinner_dining.png' %}"
+        />
+        Nova receita</a
+      >
+      <a href="/admin/"
+        ><img
+          src="{% static '/admin.png' %}"
+        />
+        Admin</a
+      >
+    </nav>
+  </section>
