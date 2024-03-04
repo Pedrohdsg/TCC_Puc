@@ -15,7 +15,11 @@ def index(request):
 
 def receitas(request, receita_id):
     receita = get_object_or_404(Receita, pk=receita_id)
-    return render(request, 'receita/receitas.html', {"receita": receita})
+    massa_ingredientes = receita.receitaingrediente_set.filter(categoria='massa')
+    recheio_ingredientes = receita.receitaingrediente_set.filter(categoria='recheio')
+    cobertura_ingredientes = receita.receitaingrediente_set.filter(categoria='cobertura')
+    generico_ingredientes = receita.receitaingrediente_set.filter(categoria='')
+    return render(request, 'receita/receitas.html', {"receita": receita, 'massa_ingredientes': massa_ingredientes, 'recheio_ingredientes': recheio_ingredientes, 'cobertura_ingredientes': cobertura_ingredientes, 'generico_ingredientes':generico_ingredientes})
 
 def buscar(request):
     if not request.user.is_authenticated:

@@ -16,14 +16,55 @@
         <div class="imagem__texto">
           <p class="imagem__titulo">{{ receita.nome_Receita }}</p>
           <p class="imagem__descricao"></p>
+          {% if massa_ingredientes %}
           <ul>
-            {% for receita_ingrediente in receita.receitaingrediente_set.all %}
+            <p>Massa:</p>
+            {% for receita_ingrediente in massa_ingredientes %}
+            
             <li class="col-6 col-lg-6" style="color:#c04f04; margin: .5em;">
              -> {{ receita_ingrediente.ingrediente.nome }} -
               {{receita_ingrediente.quantidade }} {{ receita_ingrediente.unidade }}
             </li>
             {% endfor %}
+            {% endif %}
           </ul>
+          
+         {% if recheio_ingredientes %}
+          <ul>
+            <p>Recheio:</p>
+            {% for receita_ingrediente in recheio_ingredientes %}
+            
+            <li class="col-6 col-lg-6" style="color:#c04f04; margin: .5em;">
+             -> {{ receita_ingrediente.ingrediente.nome }} -
+              {{receita_ingrediente.quantidade }} {{ receita_ingrediente.unidade }}
+            </li>
+            {% endfor %}
+            {% endif %}
+          </ul>
+          {% if recheio_ingredientes %}
+          <ul>
+            <p>Cobertura:</p>
+            {% for receita_ingrediente in cobertura_ingredientes %}
+            
+            <li class="col-6 col-lg-6" style="color:#c04f04; margin: .5em;">
+             -> {{ receita_ingrediente.ingrediente.nome }} -
+              {{receita_ingrediente.quantidade }} {{ receita_ingrediente.unidade }}
+            </li>
+            {% endfor %}
+            {% endif %}
+          </ul>
+          {% if generico_ingredientes %}
+          <ul>
+            {% for receita_ingrediente in generico_ingredientes %}
+            
+            <li class="col-6 col-lg-6" style="color:#c04f04; margin: .5em;">
+             -> {{ receita_ingrediente.ingrediente.nome }} -
+              {{receita_ingrediente.quantidade }} {{ receita_ingrediente.unidade }}
+            </li>
+            {% endfor %}
+            {% endif %}
+          </ul>
+   
           <p class="imagem__texto">{{ receita.modo_de_preparo }}</p>
         </div> 
     <div>
