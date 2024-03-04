@@ -21,4 +21,4 @@ class ReceitaForms(forms.ModelForm):
             'usuario': forms.Select(attrs={'class':'form-control'}),
         }
 
-IngredienteFormSet = inlineformset_factory(Receita, ReceitaIngrediente, fields=('ingrediente', 'quantidade', 'unidade'), extra=1)
+IngredienteFormSet = inlineformset_factory(Receita, ReceitaIngrediente, fields=('ingrediente', 'quantidade', 'unidade', 'categoria'), extra=1)

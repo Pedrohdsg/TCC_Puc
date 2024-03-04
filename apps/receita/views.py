@@ -58,7 +58,9 @@ def editar_receita(request, receita_id):
             formset.save()
             form.save()
             messages.success(request, 'Receita editada com sucesso!')
-            return redirect('home')
+            return render(request, 'receita/editar_receita.html', {'form': form, 'formset':formset, 'receita_id':receita_id})
+            # return render(request, 'receita/receitas.html', {"receita": receita})
+            # return redirect('home')
     else:
         form = ReceitaForms(instance=receita)
         formset = IngredienteFormSet(instance=receita)

@@ -53,11 +53,17 @@ class ReceitaIngrediente(models.Model):
         "lata(s)":"lata",
         "à gosto": "à gosto"
     }
+    CATEGORIA_INGREDIENTE = [
+        ('massa', 'Massa'),
+        ('recheio', 'Recheio'),
+        ('cobertura', 'Cobertura'),
+    
+    ]
     receita = models.ForeignKey(Receita, on_delete=models.CASCADE)
     ingrediente = models.ForeignKey(Ingrediente, on_delete=models.CASCADE)
     quantidade = models.DecimalField(max_digits=4, decimal_places=1)
     unidade = models.CharField(max_length=15, choices=UNIDADE_MEDIDA)
-    
+    categoria = models.CharField(max_length=20, choices=CATEGORIA_INGREDIENTE, default='', blank=True)
 
     def __str__(self):
         return f"{str(self.receita)} - {self.quantidade} {self.unidade}"
