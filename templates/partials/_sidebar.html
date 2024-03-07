@@ -1,41 +1,53 @@
 {% load static %}
 <section class="menu-lateral">
     <nav class="menu-lateral__navegacao">
+      {% if user.is_authenticated %}
       <a href="{% url 'home' %}"
         ><img
           src="{% static '/food_bank.png' %}"
         />
         Home</a
       >
+      {% endif %}
+      {% if not user.is_authenticated %}
       <a href="{% url 'login' %}"
         ><img
-          src="{% static '/dinner_dining.png' %}"
+          src="{% static '/login.png' %}"
         />
         Login</a
       >
+      {% endif %}
+      {% if not user.is_authenticated %}
       <a href="{% url 'cadastro' %}"
-        ><img
-          src="{% static '/lunch_dining.png' %}"
-        />
-        Cadastro</a
-      >
-      <a href="{% url 'logout' %}"
-        ><img
-          src="{% static '/admin.png' %}"
-        />
-        Logout</a
-      >
-      <a href="{% url 'nova_receita' %}"
         ><img
           src="{% static '/dinner_dining.png' %}"
         />
+        Cadastro</a
+      >
+      {% endif %}
+      {% if user.is_authenticated %}
+      <a href="{% url 'nova_receita' %}"
+        ><img
+          src="{% static '/lunch_dining.png' %}"
+        />
         Nova receita</a
       >
+      {% endif %}
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}"
+        ><img
+          src="{% static '/logout.png' %}"
+        />
+        Logout</a
+      >
+      {% endif %}
+      {% if user.is_authenticated and user.is_staff %}
       <a href="/admin/"
         ><img
           src="{% static '/admin.png' %}"
         />
         Admin</a
       >
+      {% endif %}
     </nav>
   </section>

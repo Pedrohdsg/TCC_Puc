@@ -13,12 +13,13 @@ class Ingrediente(models.Model):
 
 class Receita(models.Model):
     
-    TIPO_RECEITA = [
-        ("PETISCOS","Petiscos"),
-        ("DOCES","Doces"),
-        ("PRATOS","Pratos"),
-        ("ENTRADAS","Entradas"),
-    ]
+    TIPO_RECEITA = {
+        "PETISCOS":"Petiscos",
+        "DOCES":"Doces",
+        "PRATOS":"Pratos",
+        "ENTRADAS":"Entradas",
+        "BEBIDAS":"Bebidas",
+    }
 
     nome_Receita = models.CharField(max_length=100, null=False, blank=False)
     tipo = models.CharField(max_length=10,choices=TIPO_RECEITA, default='')

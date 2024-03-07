@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from apps.receita.models import Receita, Ingrediente
-from apps.receita.forms import ReceitaForms, IngredienteFormSet
+from apps.receita.forms import ReceitaForms, EditarReceitaForms, IngredienteFormSet
 from django.contrib import messages
-
+from django.http import HttpResponseRedirect
 
 
 def index(request):
@@ -40,20 +40,24 @@ def nova_receita(request):
         messages.error(request, 'Usuário não logado')
         return redirect('login')
     
-    form = ReceitaForms
+    form = ReceitaForms()
     if request.method == 'POST':
         form = ReceitaForms(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            nova_receita = form.save()
             messages.success(request, 'Nova receita adicionada!')
-            return redirect('home')
+            return redirect('editar_receita', receita_id=nova_receita.pk)
 
     return render(request, 'receita/nova_receita.html', {'form': form})
 
 def editar_receita(request, receita_id):
     receita = Receita.objects.get(id=receita_id)
+    massa_ingredientes = receita.receitaingrediente_set.filter(categoria='massa')
+    recheio_ingredientes = receita.receitaingrediente_set.filter(categoria='recheio')
+    cobertura_ingredientes = receita.receitaingrediente_set.filter(categoria='cobertura')
+    generico_ingredientes = receita.receitaingrediente_set.filter(categoria='')
     if request.method == 'POST':
-        form = ReceitaForms(request.POST, request.FILES, instance=receita)
+        form = EditarReceitaForms(request.POST, request.FILES, instance=receita)
         formset = IngredienteFormSet(request.POST, instance=receita)
         if form.is_valid() and formset.is_valid():
             novo_ingrediente_nome = request.POST.get('novo_ingrediente')
@@ -62,15 +66,14 @@ def editar_receita(request, receita_id):
             formset.save()
             form.save()
             messages.success(request, 'Receita editada com sucesso!')
-            return render(request, 'receita/editar_receita.html', {'form': form, 'formset':formset, 'receita_id':receita_id})
-            # return render(request, 'receita/receitas.html', {"receita": receita})
+            # return render(request, 'receita/editar_receita.html', {'form': form, 'formset':formset, 'receita_id':receita_id})
+            # return render(request, 'receita/receitas.html', {"receita": receita, 'massa_ingredientes': massa_ingredientes, 'recheio_ingredientes': recheio_ingredientes, 'cobertura_ingredientes': cobertura_ingredientes, 'generico_ingredientes':generico_ingredientes})
+            return HttpResponseRedirect(request.path_info)
             # return redirect('home')
     else:
-        form = ReceitaForms(instance=receita)
+        form = EditarReceitaForms(instance=receita)
         formset = IngredienteFormSet(instance=receita)
-
-        
-
+      
     return render(request, 'receita/editar_receita.html', {'form': form, 'formset':formset, 'receita_id':receita_id})
 
 def deletar_receita(request, receita_id):

@@ -67,12 +67,12 @@
    
           <p class="imagem__texto">{{ receita.modo_de_preparo }}</p>
         </div> 
-    <div>
-        <a href="{% url 'editar_receita' receita.id %}"><button class="btn btn-success col-12" style="padding: top 1em; margin: .5em;">Editar</button></a>
-        <a href="{% url 'deletar_receita' receita.id %}"><button class="btn btn-danger col-12" style="padding: top 1em; margin: .5em;">Deletar</button></a>
-    </div>
-      </div>
-     
+          <div class="btn_receitas">
+            <a href="{% url 'editar_receita' receita.id %}"><button class="btn btn-success col-12" style="padding: top 1em; margin: .5em;">Editar</button></a>
+            <a href="{% url 'deletar_receita' receita.id %}"><button class="btn btn-danger col-12" style="padding: top 1em; margin: .5em;">Deletar</button></a>
+          </div>
+      
+       </div>
     </div>
   </section>
 </section>

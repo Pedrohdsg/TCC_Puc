@@ -4,6 +4,7 @@
             <section class="galeria" style="margin-left: 5em">
                 <form action="{% url 'editar_receita' receita_id %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+
                     <div class="row">
                         {% for field in form.visible_fields %}
                         <div class="col-12 col-lg-12" style="margin-bottom: .5em;">
@@ -14,88 +15,31 @@
                     </div>
                     {{ recipe_form.as_p }}
 
-                    <h2 class="col-12 col-lg-12" style="color:#c04f04; margin: .5em;">Ingredientes:</h2>
+                    <h2 class="col-12 col-lg-12" style="color:#c04f04; margin: 1em;">Ingredientes:</h2>
                     {{ formset.management_form }}
                     <ul id="ingrediente-lista">
                         {% for form in formset %}
-                        <li class="col-12 col-lg-12" style="color:#c04f04; margin: .5em;">{{ form.as_p }}</li>
+                        <li class="col-12 col-lg-12" style="color:#c04f04; margin: 1.2em;">{{ form.as_p }}</li>
                         {% endfor %}
                     </ul>
                     <div>
-                        <input type="text" id="novo_ingrediente" name="novo_ingrediente" placeholder="Novo ingrediente">
-                        <button id="add-ingrediente-btn" type="button" class="btn btn-warning col-6" style="padding: top 5px;">Adicionar Ingrediente</button>
-                        <input type="submit" value="Salvar" class="btn btn-success col-6" style="padding: top 5px;">
+                        <input style="padding: top .5em;" type="text" id="novo_ingrediente" name="novo_ingrediente" placeholder="Novo ingrediente">
+                        <!-- <button id="add-ingrediente-btn" type="button" class="btn btn-warning col-6" style="padding: top 5px;">Adicionar Ingrediente</button> -->
+                        <input id="edit-receita-form" type="submit" value="Salvar" class="btn btn-warning col-6" style="padding: top 5px; margin-bottom: 1em;" formaction="">
+                    </div>
+                    
+                    <div>
+                        <a href="{% url 'receitas' receita_id=receita_id %}" class="btn btn-success">Voltar para a Receita</a>
                     </div>
                     
                     
-                </form>
-                <ul id="empty-form" style="display: none; ">
-                    {{ formset.empty_form.as_p }}
-                </ul>
-            
+                </form>                         
             </section>
             
         </main>
     </div>
            
 </body> 
-<script>
-    document.getElementById('add-ingrediente-btn').addEventListener('click', function() {
-        var formset = document.getElementById('ingrediente-lista');
-        var emptyFormHTML = document.getElementById('empty-form').innerHTML;
-        var newItem = document.createElement('li');
-        newItem.innerHTML = emptyFormHTML;
-        formset.appendChild(newItem);
-    });
-
-    // Adicionar novo ingrediente à lista de ingredientes
-    document.getElementById('add-ingrediente-btn').addEventListener('click', function() {
-        var ingredientInput = document.getElementById('novo_ingrediente');
-        var formset = document.getElementById('ingrediente-lista');
-        var emptyFormHTML = document.getElementById('empty-form').innerHTML;
-        var newItem = document.createElement('li');
-        newItem.innerHTML = emptyFormHTML;
-        newItem.querySelector('input[type="text"]').value = ingredientInput.value;
-        formset.appendChild(newItem);
-        ingredientInput.value = ''; // Limpar o campo de entrada do novo ingrediente
-    });
-</script>
 
 {% endblock %}
 
-
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Recipe</title>
-</head>
-<body>
-    <h1>Edit Recipe</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ receita_form.as_p }}
-
-        <h2>Ingredients</h2>
-        {{ formset.management_form }}
-        <ul id="ingrediente-lista">
-            {% for form in formset %}
-                <li>{{ form.as_p }}</li>
-            {% endfor %}
-        </ul>
-        <button id="add-ingrediente-btn" type="button">Add Ingredient</button>
-        <input type="submit" value="Save">
-    </form>
-
-    <script>
-        document.getElementById('add-ingrediente-btn').addEventListener('click', function() {
-            var formset = document.getElementById('ingrediente-lista');
-            var newItem = document.createElement('li');
-            newItem.innerHTML = '{{ formset.empty_form.as_p|safe }}';
-            formset.appendChild(newItem);
-        });
-    </script>
-</body>
-</html> -->

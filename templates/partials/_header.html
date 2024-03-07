@@ -9,6 +9,7 @@
 {% include 'partials/_alertas.html' %}
   <div class="cabecalho__busca">
     <div class="busca__fundo">
+      {% if user.is_authenticated %}
       <form action="{% url 'buscar' %}">
         <input
           class="busca__input"
@@ -23,6 +24,7 @@
             alt="ícone de search"
           />
         </button>
+        {% endif %}
       </form>
     </div>
   </div>
