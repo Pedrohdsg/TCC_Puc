@@ -48,6 +48,7 @@ class ReceitaIngrediente(models.Model):
         "l":"litros",
         "colher(es) chá":"colheres chá",
         "colher(es) sopa":"colheres sopa",
+        "colher(es) sobremesa":"colheres sobremesa",
         "un":"unidades",
         "xícara(s)":"xícaras",
         "pitada":"pitada",
@@ -63,7 +64,7 @@ class ReceitaIngrediente(models.Model):
     receita = models.ForeignKey(Receita, on_delete=models.CASCADE)
     ingrediente = models.ForeignKey(Ingrediente, on_delete=models.CASCADE)
     quantidade = models.DecimalField(max_digits=4, decimal_places=1)
-    unidade = models.CharField(max_length=15, choices=UNIDADE_MEDIDA)
+    unidade = models.CharField(max_length=20, choices=UNIDADE_MEDIDA)
     categoria = models.CharField(max_length=20, choices=CATEGORIA_INGREDIENTE, default='', blank=True)
 
     def __str__(self):

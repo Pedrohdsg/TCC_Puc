@@ -1,4 +1,4 @@
-{% extends 'shared/base.html'%} {% load static %} {% block content %}
+{% extends 'shared/base.html'%} {% load static %} {% block content %} {% load allauth %} {% load socialaccount %} 
  
 
             <section class="galeria" style="margin-left: 5em">
@@ -12,11 +12,18 @@
                         </div>
                         {% endfor %}
                     </div>
-                    <div class="btn__usuario">
-                        <button type="submit" class="btn btn-success col-12" style="padding: top 5px;">Logar</button>
+                    <div>
+                        <div class="btn__usuario">                            
+                            <button type="submit" class="btn btn-success col-12" style="padding: top 5px;">Logar</button>
+                        </div>
+                        
+                        <a class="google__login" href="{% provider_login_url 'google' %}">Login com o Google</a>
                     </div>
+                    
                 </form>
-            </section>
+                
+                
+            </section>                     
         </main>
     </div>
 </body>

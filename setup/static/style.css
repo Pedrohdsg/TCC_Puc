@@ -378,6 +378,9 @@ table {
     width: 100px;
     text-align: center;
     border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tags__tag:hover {
@@ -536,6 +539,24 @@ table {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
 }
+
+.google__login{
+    display: flex;
+    margin-top: 1em;
+    background-color: #fff;
+    padding: 1em;
+    width: fit-content;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #082D5C;
+    text-decoration: none;
+}
+
+.google__login:hover {
+    background-color: #082D5C;
+    color: #fff;
+}
+
 
 @media screen and (max-width: 768px) {
 
@@ -698,6 +719,9 @@ table {
     .btn__usuario {
         margin-left: -5em;
     }
+
+    
+    
 }
 
 @media screen and (max-width: 1024px) {
@@ -739,6 +763,8 @@ table {
     .menu-lateral {
         margin-top: 1em;   
     }
+
+    
 
 }
 
