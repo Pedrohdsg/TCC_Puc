@@ -7,7 +7,7 @@ from django.forms.models import inlineformset_factory
 class ReceitaForms(forms.ModelForm):
     class Meta:
         model = Receita
-        exclude = ['publicada','ingredientes','data_receita','modo_de_preparo']
+        exclude = ['publicada','ingredientes','data_receita','modo_de_preparo','usuario']
         labels= {
             'data_receita':'Data de registro',
             'usuario':'Usuário'            
@@ -24,7 +24,7 @@ class ReceitaForms(forms.ModelForm):
 class EditarReceitaForms(forms.ModelForm):
     class Meta:
         model = Receita
-        exclude = ['publicada','ingredientes','data_receita']
+        exclude = ['publicada','ingredientes','data_receita','usuario']
         labels= {
             'data_receita':'Data de registro',
             'usuario':'Usuário'            

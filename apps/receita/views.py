@@ -35,6 +35,7 @@ def buscar(request):
 
     return render(request, "receita/index.html", {"cards": receitas})
 
+
 def nova_receita(request):
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado')
@@ -44,7 +45,10 @@ def nova_receita(request):
     if request.method == 'POST':
         form = ReceitaForms(request.POST, request.FILES)
         if form.is_valid():
-            nova_receita = form.save()
+            nova_receita = form.save(commit=False)
+            nova_receita.usuario = request.user
+            nova_receita.save()
+            form.save_m2m()
             messages.success(request, 'Nova receita adicionada!')
             return redirect('editar_receita', receita_id=nova_receita.pk)
 
@@ -52,10 +56,7 @@ def nova_receita(request):
 
 def editar_receita(request, receita_id):
     receita = Receita.objects.get(id=receita_id)
-    massa_ingredientes = receita.receitaingrediente_set.filter(categoria='massa')
-    recheio_ingredientes = receita.receitaingrediente_set.filter(categoria='recheio')
-    cobertura_ingredientes = receita.receitaingrediente_set.filter(categoria='cobertura')
-    generico_ingredientes = receita.receitaingrediente_set.filter(categoria='')
+    
     if request.method == 'POST':
         form = EditarReceitaForms(request.POST, request.FILES, instance=receita)
         formset = IngredienteFormSet(request.POST, instance=receita)
@@ -66,10 +67,8 @@ def editar_receita(request, receita_id):
             formset.save()
             form.save()
             messages.success(request, 'Receita editada com sucesso!')
-            # return render(request, 'receita/editar_receita.html', {'form': form, 'formset':formset, 'receita_id':receita_id})
-            # return render(request, 'receita/receitas.html', {"receita": receita, 'massa_ingredientes': massa_ingredientes, 'recheio_ingredientes': recheio_ingredientes, 'cobertura_ingredientes': cobertura_ingredientes, 'generico_ingredientes':generico_ingredientes})
             return HttpResponseRedirect(request.path_info)
-            # return redirect('home')
+            
     else:
         form = EditarReceitaForms(instance=receita)
         formset = IngredienteFormSet(instance=receita)
@@ -78,10 +77,16 @@ def editar_receita(request, receita_id):
 
 def deletar_receita(request, receita_id):
     receita = Receita.objects.get(id=receita_id)
-    receita.delete()
-    messages.success(request, 'Receita deletada!')
+    
+    if receita.usuario == request.user:
+        receita.publicada=False
+        receita.save()
+        messages.success(request, 'Receita deletada!')
+        return redirect('home')
+    else:
+        messages.error(request, 'Usuário não tem permissão para apagar essa receita!')
+        return redirect('home')
 
-    return redirect('home')
 
 def filtro(request, tipo):
     receitas = Receita.objects.order_by('data_receita').filter(publicada=True, tipo=tipo)

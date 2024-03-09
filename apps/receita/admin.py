@@ -8,7 +8,7 @@ class ReceitaIngrdienteInline(admin.TabularInline):
 
 @admin.register(Receita)
 class ReceitaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nome_Receita','tipo','publicada','data_receita')
+    list_display = ('id', 'nome_Receita','tipo','publicada','data_receita','usuario')
     inlines = [ReceitaIngrdienteInline]
     search_fields = ('nome_Receita',)
     list_display_links = ('id', 'nome_Receita','tipo',)

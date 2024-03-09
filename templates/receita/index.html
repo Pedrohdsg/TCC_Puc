@@ -25,6 +25,7 @@
       <ul class="cards__lista">
         {% if cards %}
         {% for receita in cards %}
+        {% if receita.publicada == True %}
         <li class="card">
           <a href="{% url 'receitas' receita.id %}">
             {% if receita.foto == "" or receita.foto == null %}
@@ -35,13 +36,14 @@
           </a>
           <span class="card__tag">{{receita.tipo}}</span>
           <div class="card__info">
-            <p class="card__titulo">{{receita.nome_Receita}}</p>
+            <p class="card__titulo">{{receita.nome_Receita}} - Adicionada por: {{receita.usuario}}</p>
             <div class="card__texto">
               <p class="card__descricao">{{receita.tipo}}</p>
-              
+            
             </div>
           </div>
         </li>
+        {% endif %}
         {% endfor %}
         {% else %}
         {% endif %}
