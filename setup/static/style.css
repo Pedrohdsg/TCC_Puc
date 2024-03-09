@@ -149,6 +149,12 @@ table {
     border-radius: 10px 10px 0 0;
 }
 
+.card__imagem__notfound {
+    width: 450px;
+    transform: scale(.4);
+    border-radius: 10px 10px 0 0;
+}
+
 .card__tag {
     background-color: #f9ce88b3;
     border-radius: 8px;
@@ -168,10 +174,15 @@ table {
     padding: 0 1.5rem 1rem 1.5rem;
 }
 
-.card__titulo {
+.card__titulo_1 {
     font-weight: bold;
-    line-height: 1.2rem;
+    line-height: 2rem;
     margin-top: 0.8em;
+}
+
+.card__titulo_2 {
+    line-height: 2rem;
+    font-size: smaller;
 }
 
 .card__texto {
@@ -213,6 +224,14 @@ table {
     align-content: center;
     width: 70%;
     border-radius: 20px;
+}
+
+.imagem__imagem__notfound {
+    display: flex;
+    align-content: center;
+    width: 70%;
+    border-radius: 20px;
+    transform: scale(.5);
 }
 
 .imagem__info {
@@ -555,6 +574,22 @@ table {
 .google__login:hover {
     background-color: #082D5C;
     color: #fff;
+}
+
+.errorlist li{
+    margin-top: 12px;
+}
+
+.ingredientes li p {
+    padding: 4px;
+}
+
+.ingredientes li {
+    padding: 4px;
+}
+
+.btn_voltar_receita a {
+    margin: 2em 0 4em 0;
 }
 
 

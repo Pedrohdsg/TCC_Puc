@@ -17,7 +17,7 @@
 
                     <h2 class="col-12 col-lg-12" style="color:#c04f04; margin: 1em;">Ingredientes:</h2>
                     {{ formset.management_form }}
-                    <ul id="ingrediente-lista">
+                    <ul class="ingredientes" id="ingrediente-lista">
                         {% for form in formset %}
                         <li class="col-12 col-lg-12" style="color:#c04f04; margin: 1.2em;">{{ form.as_p }}</li>
                         {% endfor %}
@@ -28,7 +28,7 @@
                         <input id="edit-receita-form" type="submit" value="Salvar" class="btn btn-warning col-6" style="padding: top 5px; margin-bottom: 1em;" formaction="">
                     </div>
                     
-                    <div>
+                    <div class="btn_voltar_receita">
                         <a href="{% url 'receitas' receita_id=receita_id %}" class="btn btn-success">Voltar para a Receita</a>
                     </div>
                     
