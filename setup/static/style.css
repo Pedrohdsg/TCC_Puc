@@ -717,9 +717,9 @@ table {
         margin: 0em;
         justify-content: center;
     }
+
     .cards__titulo {
-        display: flex;
-        justify-content: center;
+      
     }
 
     .card {
