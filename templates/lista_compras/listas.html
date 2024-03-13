@@ -1,0 +1,21 @@
+{% extends 'shared/base.html'%} {% load static %} {% block content %}
+
+<section class="conteudo">
+
+  <div><a href="{% url 'nova_lista_compras' %}">Nova lista</a></div>
+    
+    <ul class="cards__lista">
+        {% if cards %}
+        {% for lista_compras in cards %}
+        <li class="card">
+          <a href="{% url 'editar_lista_compras' lista_compras.id %}"><span class="card__tag">{{lista_compras.nome}}</span></a>
+        </li>
+        {% endfor %}
+        {% else %}
+        {% endif %}
+      </ul>
+ 
+ 
+</section>
+
+{% endblock %}

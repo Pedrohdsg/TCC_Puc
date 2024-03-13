@@ -1,0 +1,15 @@
+{% extends 'shared/base.html'%} {% load static %} {% block content %}
+
+<section class="conteudo">
+
+    <h1>Nova Lista de Compras</h1>
+    
+    <form class="nova_lista__form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Criar Lista</button>
+    </form>
+ 
+</section>
+
+{% endblock %}

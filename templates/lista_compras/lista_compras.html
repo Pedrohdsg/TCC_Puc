@@ -1,0 +1,31 @@
+{% extends 'shared/base.html'%} {% load static %} {% block content %}
+
+<section class="conteudo">
+
+    <h1>Editar Lista de Compras - {{ lista.nome }}</h1>
+    
+    <h2>Adicionar Item</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ adicionar_form.as_p }}
+        <button type="submit" name="adicionar">Adicionar Item</button>
+    </form>
+
+    <h2>Itens da Lista</h2>
+    <ul>
+        {% for item in lista.itemdelista_set.all %}
+        <li>
+            {{ item.nome }} - {{ item.quantidade }} - {{ item.medida }}
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ item.id }}">
+                <input type="checkbox" name="comprado" {% if item.comprado %}checked{% endif %}> Comprado
+                <button type="submit" name="deletar">Deletar</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+ 
+</section>
+
+{% endblock %}

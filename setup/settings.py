@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.receita.apps.ReceitaConfig',
     'apps.usuarios.apps.UsuariosConfig',
+    'apps.lista_compras.apps.ListaComprasConfig',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

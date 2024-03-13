@@ -622,7 +622,8 @@ table {
 
     .menu-lateral__navegacao {
         display: flex;
-        flex-direction: row;     
+        flex-direction: row;
+        flex-wrap: wrap;
     }
     
     .menu-lateral__navegacao img {
