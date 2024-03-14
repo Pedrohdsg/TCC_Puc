@@ -1,31 +1,33 @@
 {% extends 'shared/base.html'%} {% load static %} {% block content %}
 
-<section class="conteudo">
-
+<section class="edicao_lista">
+    
     <h1>Editar Lista de Compras - {{ lista.nome }}</h1>
     
     <h2>Adicionar Item</h2>
-    <form method="post">
+    <form class="lista_itens__form" method="post">
         {% csrf_token %}
         {{ adicionar_form.as_p }}
-        <button type="submit" name="adicionar">Adicionar Item</button>
+        <button class="btn btn-success col-9" type="submit" name="adicionar">Adicionar Item</button>
     </form>
 
     <h2>Itens da Lista</h2>
-    <ul>
+    <ul class="lista__lista">
         {% for item in lista.itemdelista_set.all %}
-        <li>
+        
+        <li class="item_lista__form">
             {{ item.nome }} - {{ item.quantidade }} - {{ item.medida }}
-            <form method="post">
+            <form class="lista_itens__form" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="item_id" value="{{ item.id }}">
                 <input type="checkbox" name="comprado" {% if item.comprado %}checked{% endif %}> Comprado
-                <button type="submit" name="deletar">Deletar</button>
+                <button style="transform: scale(.8);" class="btn btn-warning" type="submit" name="deletar">Deletar item</button>
             </form>
         </li>
         {% endfor %}
     </ul>
- 
+    <a href="{% url 'deletar_lista_compras' lista.id %}"><button class="btn btn-danger col-9" style="padding: top 1em; margin: .5em;">Deletar lista</button></a>
+    
 </section>
 
 {% endblock %}

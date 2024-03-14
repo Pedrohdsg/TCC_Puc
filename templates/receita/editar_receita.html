@@ -23,11 +23,12 @@
                         {% endfor %}
                     </ul>
                     <div>
-                        <input style="padding: top .5em;" type="text" id="novo_ingrediente" name="novo_ingrediente" placeholder="Novo ingrediente">
-                        <!-- <button id="add-ingrediente-btn" type="button" class="btn btn-warning col-6" style="padding: top 5px;">Adicionar Ingrediente</button> -->
-                        <input id="edit-receita-form" type="submit" value="Salvar" class="btn btn-warning col-6" style="padding: top 5px; margin-bottom: 1em;" formaction="">
+                        <input class="novo_ingrediente" style="padding: top .5em;" type="text" id="novo_ingrediente" name="novo_ingrediente" placeholder="Novo ingrediente">
+                        <button id="add-ingrediente-btn" type="submit" class="btn btn-warning col-6" style="padding: top 5px;">Adicionar Ingrediente</button>
+                    
                     </div>
                     
+                    <input id="edit-receita-form" type="submit" value="Salvar receita" class="btn btn-warning col-6" style="padding: top 5px; margin-bottom: 1em;" formaction="">
                     <div class="btn_voltar_receita">
                         <a href="{% url 'receitas' receita_id=receita_id %}" class="btn btn-success">Voltar para a Receita</a>
                     </div>
