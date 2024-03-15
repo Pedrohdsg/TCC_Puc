@@ -56,22 +56,25 @@ def nova_receita(request):
 
 def editar_receita(request, receita_id):
     receita = Receita.objects.get(id=receita_id)
-    
-    if request.method == 'POST':
-        form = EditarReceitaForms(request.POST, request.FILES, instance=receita)
-        formset = IngredienteFormSet(request.POST, instance=receita)
-        if form.is_valid() and formset.is_valid():
-            novo_ingrediente_nome = request.POST.get('novo_ingrediente')
-            if novo_ingrediente_nome:
-                novo_ingrediente_nome, create = Ingrediente.objects.get_or_create(nome=novo_ingrediente_nome)
-            formset.save()
-            form.save()
-            messages.success(request, 'Receita editada com sucesso!')
-            return HttpResponseRedirect(request.path_info)
-            
+    if receita.usuario == request.user:
+        if request.method == 'POST':
+            form = EditarReceitaForms(request.POST, request.FILES, instance=receita)
+            formset = IngredienteFormSet(request.POST, instance=receita)
+            if form.is_valid() and formset.is_valid():
+                novo_ingrediente_nome = request.POST.get('novo_ingrediente')
+                if novo_ingrediente_nome:
+                    novo_ingrediente_nome, create = Ingrediente.objects.get_or_create(nome=novo_ingrediente_nome)
+                formset.save()
+                form.save()
+                messages.success(request, 'Receita editada com sucesso!')
+                return HttpResponseRedirect(request.path_info)
+                
+        else:
+            form = EditarReceitaForms(instance=receita)
+            formset = IngredienteFormSet(instance=receita)
     else:
-        form = EditarReceitaForms(instance=receita)
-        formset = IngredienteFormSet(instance=receita)
+        messages.error(request, 'Usuário não tem permissão para editar essa receita!')
+        return redirect('home')
       
     return render(request, 'receita/editar_receita.html', {'form': form, 'formset':formset, 'receita_id':receita_id})
 

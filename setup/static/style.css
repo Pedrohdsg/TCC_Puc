@@ -866,8 +866,7 @@ table {
 
     .principal {
         display: flex;
-        flex-wrap: wrap;
-        
+        flex-wrap: wrap;        
     }
 
     .row {
