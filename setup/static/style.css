@@ -133,6 +133,7 @@ table {
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
+    margin-bottom: 8em;
 }
 
 .card {
@@ -350,7 +351,7 @@ table {
 .principal {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10em;
+    margin-bottom: 12em;
 }
 
 .rodape {
@@ -822,6 +823,7 @@ table {
 
     .rodape__texto {
         font-size: .9em;
+        margin-right: 1em;
     }
 
     .imagem__info {
