@@ -154,15 +154,23 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'primary'
 }
 
-AUTHENTICATION_BACKENDS = [
+AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-]
+)
 
 SOCIALACCOUNT_PROVIDERS = {
-  'google': {
-      'EMAIL_AUTHENTICATION': True
-  }
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+        'redirect_uri': 'https://pedrohdsg.pythonanywhere.com/',
+    }
 }
 
 ACCOUNT_EMAIL_REQUIRED = True
