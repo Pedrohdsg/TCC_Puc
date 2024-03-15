@@ -7,7 +7,7 @@ from apps.lista_compras.forms import ListaDeComprasForm, AdicionarItemForm, Dele
 def lista_compras(request):
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado')
-        return redirect('login')
+        return redirect('logar')
 
     lista_compras = ListaDeCompras.objects.all()
     return render(request, 'lista_compras/listas.html', {"cards": lista_compras})

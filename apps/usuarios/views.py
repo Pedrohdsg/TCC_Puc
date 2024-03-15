@@ -3,8 +3,9 @@ from apps.usuarios.forms import LoginForms, CadastroForms
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
+from allauth.socialaccount.models import SocialAccount
 
-def login(request):
+def logar(request):
     form = LoginForms()
 
     if request.method == 'POST':
@@ -25,7 +26,7 @@ def login(request):
             return redirect('home')
         else:
             messages.error(request, 'Erro ao efetuar login')
-            return redirect('login')
+            return redirect('logar')
 
 
     return render(request, 'usuarios/login.html', {'form': form})
@@ -54,13 +55,13 @@ def cadastro(request):
             )
             usuario.save()
             messages.success(request, f'{nome} cadastrado com sucesso')
-            return redirect('login')
+            return redirect('logar')
 
 
 
     return render(request, 'usuarios/cadastro.html', {'form': form})
 
-def logout(request):
+def deslogar(request):
     auth.logout(request)
     messages.success(request, 'Logout efetuado com sucesso')
-    return redirect('login')
+    return redirect('logar')

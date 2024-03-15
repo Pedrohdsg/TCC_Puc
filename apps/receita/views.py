@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 def index(request):
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado')
-        return redirect('login')
+        return redirect('logar')
 
     receitas = Receita.objects.order_by('data_receita').filter(publicada=True)
     return render(request, 'receita/index.html', {"cards": receitas})
@@ -24,7 +24,7 @@ def receitas(request, receita_id):
 def buscar(request):
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado')
-        return redirect('login')
+        return redirect('logar')
     
     receitas = Receita.objects.order_by('data_receita').filter(publicada=True)
 
@@ -39,7 +39,7 @@ def buscar(request):
 def nova_receita(request):
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado')
-        return redirect('login')
+        return redirect('logar')
     
     form = ReceitaForms()
     if request.method == 'POST':

@@ -10,7 +10,7 @@
       >
       {% endif %}
       {% if not user.is_authenticated %}
-      <a href="{% url 'login' %}"
+      <a href="{% url 'logar' %}"
         ><img
           src="{% static '/login.png' %}"
         />
@@ -34,7 +34,7 @@
       >
       {% endif %}
       {% if user.is_authenticated %}
-      <a href="{% url 'logout' %}"
+      <a href="{% url 'deslogar' %}"
         ><img
           src="{% static '/logout.png' %}"
         />
