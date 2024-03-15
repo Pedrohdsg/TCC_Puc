@@ -160,17 +160,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        },
-        'OAUTH_PKCE_ENABLED': True,
-        'redirect_uri': 'http://pedrohdsg.pythonanywhere.com/accounts/google/login/callback/',
-    }
+  'google': {
+      'EMAIL_AUTHENTICATION': True
+  }
 }
 
 LOGIN_REDIRECT_URL = 'home'
