@@ -169,14 +169,9 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         },
         'OAUTH_PKCE_ENABLED': True,
-        'redirect_uri': 'http://pedrohdsg.pythonanywhere.com/accounts/google/login/callback/',
+        'redirect_uri': 'https://pedrohdsg.pythonanywhere.com/accounts/google/login/callback/',
     }
 }
-
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
