@@ -160,16 +160,16 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        },
-        'OAUTH_PKCE_ENABLED': True,
-    }
+  'google': {
+      'EMAIL_AUTHENTICATION': True,
+      'EMAIL_AUTHENTICATION_AUTO_CONNECT':True
+  }
+}
+
+
+SOCIALACCOUNT_FORMS = {
+    'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
+    'signup': 'allauth.socialaccount.forms.SignupForm',
 }
 
 LOGIN_REDIRECT_URL = 'home'
